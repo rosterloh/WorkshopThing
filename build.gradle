@@ -1,20 +1,21 @@
 buildscript {
-    ext.kotlin_version = '1.2.10'
-    repositories {
-        google()
-        jcenter()
-    }
+    apply from: './versions.gradle'
+    addRepos(repositories)
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0-alpha06'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath deps.android_gradle_plugin
+        classpath deps.kotlin.plugin
+        //classpath deps.google_services_plugin
+        //classpath deps.firebase_plugin
+        classpath deps.fabric_plugin
     }
 }
 
+plugins {
+    id 'com.github.ben-manes.versions' version '0.17.0'
+}
+
 allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+    addRepos(repositories)
 }
 
 task clean(type: Delete) {
